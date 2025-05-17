@@ -4,9 +4,10 @@ import requests
 from io import BytesIO
 
 # --- Constants ---
-V0_DEV_URL = "https://v0-knight-frank-wealth-dashboard.vercel.app/" # Replace!
+V0_DEV_URL = "https://v0-app-data-recovery.vercel.app/"  # Replace with your actual URL
 LOGO_URL_SVG = "https://www.knightfrank.com/library/v3.0/images/knightfranklogo.svg"
-# LOGO_URL_PNG = "https://www.knightfrank.com/resources/kf-logo.png" # Example PNG URL
+VERSION = "2.0"
+LAST_UPDATED = "2025-05-17"
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -15,7 +16,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- Helper Functions & Data Loading ---
+# --- Helper Functions ---
 @st.cache_data(ttl=86400)
 def load_raster_image_from_url(image_url: str):
     """
@@ -27,20 +28,20 @@ def load_raster_image_from_url(image_url: str):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
         response = requests.get(image_url, headers=headers, timeout=10)
-        
+       
         print(f"Attempting to load RASTER image from: {image_url}")
         print(f"Response Status Code: {response.status_code}")
         print(f"Response Content-Type: {response.headers.get('Content-Type')}")
-        
+       
         response.raise_for_status()
 
         if not response.content:
             st.warning("Image content is empty.")
             return None
-        
+       
         logo_image = Image.open(BytesIO(response.content))
         return logo_image
-        
+       
     except requests.exceptions.HTTPError as http_err:
         st.warning(f"HTTP error occurred while loading image: {str(http_err)}")
         print(f"HTTP error: {str(http_err)} - URL: {image_url}")
@@ -59,33 +60,35 @@ def load_raster_image_from_url(image_url: str):
         return None
 
 # --- Main Application UI ---
-
 st.title("Wealth Report 2025")
 st.caption("Premium Luxury Real Estate Analytics by Terra Caribbean, leveraging Knight Frank insights.")
+
+# --- Version & Disclaimer ---
+st.warning(f"""
+**Version {VERSION} | Disclaimer**  
+This dashboard uses preliminary data from the Knight Frank Wealth Report 2025.  
+While based on real sources, figures may contain errors or approximations.  
+*This is a demo under active testing—verify critical metrics with official reports.*  
+""")
 
 col1, col2 = st.columns([1, 5])
 
 with col1:
-    # For SVG, st.image can handle the URL directly
-    # CORRECTED LINE:
     st.image(LOGO_URL_SVG, width=150, use_container_width=False)
 
-    # If you had a PNG and wanted to use the PIL-based loader:
-    # png_logo = load_raster_image_from_url(LOGO_URL_PNG)
-    # if png_logo:
-    # CORRECTED LINE (if you use this block later):
-    #     st.image(png_logo, width=150, use_container_width=False)
-    # else:
-    #     st.subheader("KNIGHT FRANK") # Fallback
+with col2:
+    st.markdown("""
+    ### Global Wealth Trends
+    Explore high-net-worth individual (HNWI) demographics and prime property performance.
+    """)
 
-# ... (rest of your code is the same)
 st.divider()
 
-# --- Embedded v0.dev Dashboard ---
+# --- Embedded Dashboard ---
 st.subheader("Global Wealth Dashboard")
 st.markdown("""
-**Interactive visualization of HNWI trends and prime residential markets.**
-*Powered by v0.dev • Data refreshed quarterly.*
+**Interactive visualization of HNWI trends and prime residential markets.**  
+*Powered by v0.dev • Data refreshed quarterly.*  
 """)
 
 st.link_button("🚀 Open Full Dashboard", V0_DEV_URL)
@@ -100,14 +103,13 @@ try:
 except Exception as e:
     st.error(f"Could not load the interactive dashboard. Please try again later or check the URL. Error: {e}")
 
-
 # --- Footer ---
 st.divider()
-st.markdown("""
+st.markdown(f"""
 ---
-**Credits & Contact**
+**Credits & Contact**  
+- **Data Source:** [Knight Frank Wealth Report 2025](https://www.knightfrank.com/wealthreport)  
+- **Version:** {VERSION} | Last updated: {LAST_UPDATED}  
 
-- **Data Source:** Knight Frank Wealth Report 2025
-
-*This dashboard provides insights based on the latest global wealth trends.*
+*For verified data, refer to official Knight Frank publications.*  
 """)
