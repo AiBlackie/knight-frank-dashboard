@@ -154,13 +154,6 @@ For more information, visit [knightfrank.com/wealthreport](https://www.knightfra
 
 This README provides a comprehensive overview of the Knight Frank Wealth Report 2025 Dashboard project, including its features, tech stack, installation instructions, and project structure. It will help users understand the purpose of the project and how to get started with it.
 
-<Actions>
-  <Action name="Add deployment instructions" description="Add more detailed deployment instructions for different platforms" />
-  <Action name="Create a contributing guide" description="Add a CONTRIBUTING.md file with guidelines for contributors" />
-  <Action name="Add API documentation" description="Document any API endpoints used in the application" />
-  <Action name="Create a license file" description="Add an MIT license file to the project" />
-  <Action name="Add screenshots" description="Include more screenshots of different dashboard sections" />
-</Actions>
 
 
 ```
