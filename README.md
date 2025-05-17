@@ -1,6 +1,7 @@
 Knight Frank Wealth Report 2025 Dashboard
 An interactive dashboard application that visualizes key insights and data from the Knight Frank Wealth Report 2025.
 
+ 
 ![Dashboard Preview](/public/placeholder.svg?height=400&width=800&query=Knight Frank Wealth Report Dashboard with charts and data visualizations)
 
 Overview
