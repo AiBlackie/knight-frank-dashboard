@@ -4,10 +4,11 @@ import requests
 from io import BytesIO
 
 # --- Constants ---
-V0_DEV_URL = "https://v0-app-data-recovery.vercel.app/"  # Replace with your actual URL
+V0_DEV_URL = "https://v0-app-data-recovery.vercel.app/"
 LOGO_URL_SVG = "https://www.knightfrank.com/library/v3.0/images/knightfranklogo.svg"
-VERSION = "2.0"
+VERSION = "2.0 (Beta)"
 LAST_UPDATED = "2025-05-17"
+WEALTH_REPORT_2025_VIDEO = "https://www.youtube.com/watch?v=7u1fb_B6gBo"
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -74,13 +75,17 @@ While based on real sources, figures may contain errors or approximations.
 col1, col2 = st.columns([1, 5])
 
 with col1:
-    st.image(LOGO_URL_SVG, width=150, use_container_width=False)
+    st.image(LOGO_URL_SVG, width=150, use_container_width=False)  # Updated parameter here
 
 with col2:
     st.markdown("""
     ### Global Wealth Trends
     Explore high-net-worth individual (HNWI) demographics and prime property performance.
     """)
+
+# Add the 2025 video link button
+st.link_button("📺 Watch the 2025 Wealth Report Highlights", WEALTH_REPORT_2025_VIDEO, 
+              help="Official Knight Frank Wealth Report 2025 video overview")
 
 st.divider()
 
@@ -109,6 +114,7 @@ st.markdown(f"""
 ---
 **Credits & Contact**  
 - **Data Source:** [Knight Frank Wealth Report 2025](https://www.knightfrank.com/wealthreport)  
+- **Video Overview:** [2025 Wealth Report Highlights]({WEALTH_REPORT_2025_VIDEO})  
 - **Version:** {VERSION} | Last updated: {LAST_UPDATED}  
 
 *For verified data, refer to official Knight Frank publications.*  
