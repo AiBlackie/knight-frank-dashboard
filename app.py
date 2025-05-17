@@ -6,7 +6,7 @@ from io import BytesIO
 # --- Constants ---
 V0_DEV_URL = "https://v0-app-data-recovery.vercel.app/"
 LOGO_URL_SVG = "https://www.knightfrank.com/library/v3.0/images/knightfranklogo.svg"
-VERSION = "2.0 (Beta)"
+VERSION = "2.0"
 LAST_UPDATED = "2025-05-17"
 WEALTH_REPORT_2025_VIDEO = "https://www.youtube.com/watch?v=7u1fb_B6gBo"
 
